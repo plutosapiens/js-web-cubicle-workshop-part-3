@@ -5,6 +5,12 @@ const userSchema = new mongoose.Schema({
     password: String,
 });
 
+//TO DO if the user already exists, throw error
+// userSchema.virtual('repeatPassword').set(function(value) {
+//     if(value !== this.password) {
+//         throw new mongoose.MongooseError('Password missmatch!');
+//     }
+// })
 
 const User = mongoose.model('User', userSchema);
 
