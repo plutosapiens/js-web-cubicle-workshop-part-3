@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const brcypt = require('bcrypt');
 
 const userSchema = new mongoose.Schema({
     username: String,
@@ -12,6 +13,11 @@ const userSchema = new mongoose.Schema({
 //     }
 // })
 
+userSchema.pre('save', async function () {
+    //                             word,           salt rounds
+    const hash = await brcypt.hash(this.password, 10);
+    this.password = hash;
+})
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;
