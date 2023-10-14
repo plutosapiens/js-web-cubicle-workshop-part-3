@@ -4,7 +4,7 @@ const cubes = [];
 exports.create = async (cubeData) => {
   const cube = await Cube.create(cubeData);
   return cube;
-}
+};
 
 exports.getAll = async (search, from, to) => {
   let filterCubes = await Cube.find().lean(); //lean() за да можем да си видим обектите на страницата
@@ -34,3 +34,5 @@ exports.attachAccessory = async (cubeId, accessoryId) => {
 
   return cube.save();
 };
+
+exports.update = (id, cubeData) => Cube.findByIdAndUpdate(id, cubeData);

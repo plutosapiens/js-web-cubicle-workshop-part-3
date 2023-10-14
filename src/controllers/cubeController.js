@@ -77,5 +77,16 @@ router.get('/:cubeId/delete', async (req, res) => {
     res.render('cube/delete', { cube, options });
 });
 
+router.post('/:cubeId/edit', async (req, res) => {
+    const { cubeId } = req.params;
+    const payload = { name, description, imageUrl, difficultyLevel } = req.body;
+
+    await cubeService.update(cubeId, payload);
+
+    res.redirect(`/cubes/${cubeId}/details`);
+
+});
+
+
 
 module.exports = router;
